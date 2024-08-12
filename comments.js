@@ -1,25 +1,33 @@
-// Create web sever using express
-// Create a route that listens to /comments
-// Send back some dummy data as json
-// Start the server and test the route using postman
-
+// Create web sever and listen to port 3000
 const express = require('express');
 const app = express();
+const port = 3000;
 
+// Create a new comment
+app.post('/comments', (req, res) => {
+  res.send('Create a new comment');
+});
+
+// Read all comments
 app.get('/comments', (req, res) => {
-    res.json({ message: 'Comments route' });
+  res.send('Read all comments');
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+// Read a comment
+app.get('/comments/:id', (req, res) => {
+  res.send('Read a comment');
 });
 
-// Start the server: node comments.js
-// Test the route using postman: http://localhost:3000/comments
+// Update a comment
+app.put('/comments/:id', (req, res) => {
+  res.send('Update a comment');
+});
 
-// Output:
-// {
-//     "message": "Comments route"
-// }
+// Delete a comment
+app.delete('/comments/:id', (req, res) => {
+  res.send('Delete a comment');
+});
 
-// To stop the server: ctrl + c
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
